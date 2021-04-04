@@ -1,0 +1,59 @@
+---
+title: "TradingCharts"
+output: html_document
+---
+
+### Loading libraries
+
+Reference:
+
+1.  <https://www.r-bloggers.com/2021/03/candlestick-charts-in-r/>
+
+2.  <https://www.quantmod.com/>
+
+3.  <https://alastairrushworth.github.io/Easily-Download-Stock-price-Data-with-quantmod/>
+
+```{r}
+library("quantmod")
+
+```
+
+### Getting price data for Amazon
+
+```{r}
+nse <-getSymbols("SHK.NS", 
+                   from = "2020-01-01", 
+                   to = "2021-04-01",
+                   periodicity = "daily",
+                   auto.assign=FALSE)
+chartSeries(nse, name="nse Chart")
+
+```
+
+### Checking the xts object
+
+```{r}
+
+head(nse)
+
+```
+
+### Chart for the perdiod selected above
+
+```{r}
+chartSeries(nse, name="nse Chart")
+
+```
+
+### Filtering data for last 2 months
+
+```{r}
+chartSeries(nse, name="nse Chart", subset = "last 2 months")
+```
+
+### Chart for 2021 with theme white
+
+```{r}
+chartSeries(nse, name="nse Chart", subset = "2021", theme="white")
+
+```
